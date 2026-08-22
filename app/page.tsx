@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import GeneratorForm from "./generator-form";
+import import GeneratorForm from "./generator-form-new"; "./generator-form";
 
 export default async function Home() {
   const supabase = createClient();
