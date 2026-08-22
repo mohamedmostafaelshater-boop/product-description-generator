@@ -75,13 +75,11 @@ export default function GeneratorForm({ userEmail }: { userEmail: string }) {
   function handleCopy() {
     navigator.clipboard.writeText(result);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }
-
-  return (
+    setTimeout(() => setCopied(false), 2000  
+    
+      return (
     <main className="min-h-screen px-4 py-10 sm:py-16">
-      <div className="mx-auto max-w-2xl">
-        <div className="flex items-center justify-between mb-4 text-xs text-stone-500">
+        
           <span>{userEmail}</span>
           <form action="/auth/signout" method="post">
             <button
