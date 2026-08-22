@@ -75,11 +75,13 @@ export default function GeneratorForm({ userEmail }: { userEmail: string }) {
   function handleCopy() {
     navigator.clipboard.writeText(result);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000  
-    
-      return (
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  return (
     <main className="min-h-screen px-4 py-10 sm:py-16">
-        
+      <div className="mx-auto max-w-2xl">
+        <div className="flex items-center justify-between mb-4 text-xs text-stone-500">
           <span>{userEmail}</span>
           <form action="/auth/signout" method="post">
             <button
@@ -191,4 +193,52 @@ export default function GeneratorForm({ userEmail }: { userEmail: string }) {
               {TONES.map((t) => (
                 <button
                   key={t.id}
-                  type="
+                  type="button"
+                  onClick={() => setTone(t.id)}
+                  className={`px-4 py-1.5 rounded-full text-sm border transition ${
+                    tone === t.id
+                      ? "bg-stone-800 text-white border-stone-800"
+                      : "bg-white text-stone-600 border-stone-300 hover:border-stone-400"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {error && (
+            <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">
+              {error}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-stone-800 text-white rounded-lg py-3 font-medium hover:bg-stone-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? "جاري التوليد..." : "ولّد الوصف"}
+          </button>
+        </form>
+
+        {result && (
+          <div className="mt-6 bg-white rounded-2xl shadow-sm border border-stone-200 p-6">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-semibold text-stone-800">النتيجة</h2>
+              <button
+                onClick={handleCopy}
+                className="text-sm text-stone-500 hover:text-stone-800 transition"
+              >
+                {copied ? "تم النسخ ✓" : "نسخ النص"}
+              </button>
+            </div>
+            <div className="whitespace-pre-wrap text-stone-700 leading-relaxed">
+              {result}
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
