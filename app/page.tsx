@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <main>
-      <GeneratorForm />
+      <GeneratorForm userEmail={user.email as string} />
     </main>
   );
 }
