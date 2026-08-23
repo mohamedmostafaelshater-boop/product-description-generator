@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import import GeneratorForm from "./generator-form-new"; "./generator-form";
+import GeneratorForm from "./generator-form";
 
 export default async function Home() {
   const supabase = createClient();
@@ -13,5 +13,9 @@ export default async function Home() {
     redirect("/login");
   }
 
-  return <GeneratorForm userEmail={user.email ?? ""} />;
+  return (
+    <main>
+      <GeneratorForm />
+    </main>
+  );
 }
